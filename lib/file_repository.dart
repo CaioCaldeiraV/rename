@@ -230,7 +230,9 @@ class FileRepository {
     for (var i = 0; i < contentLineByLine!.length; i++) {
       if (contentLineByLine[i].contains('<key>CFBundleName</key>')) {
         contentLineByLine[i + 1] = '\t<string>$appName</string>\r';
-        break;
+      }
+      if (contentLineByLine[i].contains('<key>CFBundleDisplayName</key>')) {
+        contentLineByLine[i + 1] = '\t<string>$appName</string>\r';
       }
     }
     var writtenFile = await writeFile(
